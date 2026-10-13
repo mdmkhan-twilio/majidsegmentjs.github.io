@@ -1,6 +1,57 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Twilio Segment Analytics.js Snippet -->
+<script>
+  !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].isLoaded)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.setAttribute("data-global-segment-analytics-key",i);n.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(n,r);analytics._loadOptions=e};analytics._writeKey="HQCMlkHymNyy1hFZV9mx0RYbCHMWJ9XB";analytics.SNIPPET_VERSION="5.2.0";
+  
+  // Load Segment
+  analytics.load("HQCMlkHymNyy1hFZV9mx0RYbCHMWJ9XB");
+  
+  // Track Page View
+  analytics.page('Home', {
+    title: 'The Talent Hub | Bhusawal',
+    url: window.location.href,
+    path: window.location.pathname
+  });
+  }();
+
+  // Track Clicks & Interactions
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Track Phone link clicks
+    document.querySelectorAll('a[href^="tel:"]').forEach(function(phoneLink) {
+      phoneLink.addEventListener('click', function() {
+        analytics.track('Contact Initiated', {
+          method: 'Phone',
+          phone_number: this.getAttribute('href').replace('tel:', '')
+        });
+      });
+    });
+
+    // Track WhatsApp link clicks
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function(waLink) {
+      waLink.addEventListener('click', function() {
+        analytics.track('Contact Initiated', {
+          method: 'WhatsApp',
+          phone_number: '+919158660990'
+        });
+      });
+    });
+
+    // Track Navigation Clicks
+    document.querySelectorAll('.navlinks a').forEach(function(navLink) {
+      navLink.addEventListener('click', function() {
+        analytics.track('Navigation Clicked', {
+          target_section: this.getAttribute('href'),
+          link_text: this.innerText.trim()
+        });
+      });
+    });
+
+  });
+</script>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="The Talent Hub, Bhusawal — Classes 6–12, JEE, NEET, MHT-CET, Olympiad, Homi Bhabha and Foundation preparation." />
