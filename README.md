@@ -1,1 +1,0 @@
-# majidsegmentjs.github.io
